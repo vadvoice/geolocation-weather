@@ -9,6 +9,6 @@ npm install
 gulp
 ```
 - For clean dest folder using:
-```
+```clean
 gulp clean
 ```
