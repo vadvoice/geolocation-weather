@@ -26,23 +26,29 @@ function showPosition(position) {
   console.log(position);
   var infoWrap = document.getElementsByClassName('output')[0];
   infoWrap.innerHTML = `<span>${position.coords.latitude}</span> <span>${position.coords.longitude}</span>`
-  var url = `https://api.darksky.net/forecast/f3acae9e479d32def347b5118e41bc60/${position.coords.latitude},${position.coords.longitude}`;
-  // var url = `https://api.github.com/users/willfulAversion`;
+  // var url = `https://api.darksky.net/forecast/f3acae9e479d32def347b5118e41bc60/${position.coords.latitude},${position.coords.longitude}`;
+  var url = `https://api.github.com/users/willfulAversion`;
+
   fetch(url,{
     // mode: 'no-cors',
     method: 'GET',
     headers: {
-    Accept: 'application/json',
+    // Accept: 'application/json',
   }
   }).then(
     response => {
       if(response.ok) {
-        globalData = response;
-        console.log(response)
-      } else {
-        alert('error')
+        return response.text();
       }
-
+    }
+  ).then(
+    (text) => {
+      console.log('all my data: ', JSON.parse(text))
+    }
+  ).catch(
+    (error) => {
+      console.log(`Request faild ${error}`)
     }
   )
+
 }
