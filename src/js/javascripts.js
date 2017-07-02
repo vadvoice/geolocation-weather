@@ -81,8 +81,13 @@ function getApiData(url) {
     }
   ).then(
     (geolocationData) => {
-      console.log(geolocationData);
+      let parseData = JSON.parse(geolocationData);
+      let place = document.createElement('img');
 
+      place.setAttribute('class', 'locationImg');
+      let staticUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${parseData.results[2].geometry.location.lat},${parseData.results[2].geometry.location.lng}&zoom=16&size=400x400`
+      place.setAttribute('src', staticUrl);
+      wrap.appendChild(place);
     }
   )
 }
