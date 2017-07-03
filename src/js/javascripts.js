@@ -2,7 +2,7 @@
 var globalData = {};
 // geolocation
 var btnPosition = document.getElementById('getPosition');
-let wrap = document.getElementsByClassName('output')[0];
+var wrap = document.getElementsByClassName('output')[0];
 // listener
 btnPosition.addEventListener('click', getPosition)
 // get position
@@ -13,21 +13,22 @@ function getPosition() {
         resolve(position)
       },
       error => {
-        reject(error, 'user is bad boy')
+        alert(error.message)
+        reject(error)
       })
   }).then(
     response => {
-    showPosition(response)
+      showPosition(response)
   }),
-  (error, massage) => {
-    console.log(error, massage)
-  }
+    error => {
+      console.log(error.message);
+    }
 }
 
 function showPosition(position) {
   console.log(position);
   var infoWrap = document.getElementsByClassName('output')[0];
-  infoWrap.innerHTML = `<span>${position.coords.latitude}</span> <span>${position.coords.longitude}</span>`
+  infoWrap.innerHTML = `<div class='info-wrap'><span>${position.coords.latitude}</span> <span>${position.coords.longitude}</span></div>`
   var gitHubUserUrl = `https://api.github.com/users/willfulAversion`;
   let apiUrl = `https://maps.googleapis.com/maps/api/geocode/json?latlng=${position.coords.latitude},${position.coords.longitude}&key=AIzaSyDlT_lL5an8JHAJjv4CuGbC5Rbp9oDCMKA`
   // var weatherUrl = `https://api.darksky.net/forecast/f3acae9e479d32def347b5118e41bc60/${position.coords.latitude},${position.coords.longitude}`;
@@ -38,7 +39,7 @@ function showPosition(position) {
     method: 'GET',
     headers: {
     "Accept": "application/json"
-  }
+    }
   }).then(
     response => {
       if(response.ok) {
@@ -85,7 +86,7 @@ function getApiData(url) {
       let place = document.createElement('img');
 
       place.setAttribute('class', 'locationImg');
-      let staticUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${parseData.results[2].geometry.location.lat},${parseData.results[2].geometry.location.lng}&zoom=16&size=400x400`
+      let staticUrl = `https://maps.googleapis.com/maps/api/staticmap?center=${parseData.results[2].geometry.location.lat},${parseData.results[2].geometry.location.lng}&zoom=15&size=400x400`
       place.setAttribute('src', staticUrl);
       wrap.appendChild(place);
     }

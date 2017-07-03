@@ -24,8 +24,19 @@ $primary-color: #22313F
 body
   background: $backgrouund
   color: $color
+#getPosition
+  padding: .5em 1em
+  cursor: pointer
+.output
+  display: flex
+  flex-flow: column
+  .info-wrap
+    display: flex
+    flex-flow: column
+    span
+      padding: 1em
 
-.userImg, .locationImg
-  border-radius: 50%
-  border: 5px solid $primary-color
-  max-width: 10em
+  .userImg, .locationImg
+    border-radius: 50%
+    border: 5px solid $primary-color
+    max-width: 10em
