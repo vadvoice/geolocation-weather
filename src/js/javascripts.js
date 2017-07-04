@@ -34,6 +34,7 @@ function showPosition(position) {
   // var weatherUrl = `https://api.darksky.net/forecast/f3acae9e479d32def347b5118e41bc60/${position.coords.latitude},${position.coords.longitude}`;
   // google api data
   getApiData(apiUrl);
+
   // github user fetcch
   fetch(gitHubUserUrl, {
     method: 'GET',
@@ -76,9 +77,7 @@ function getApiData(url) {
     }
   }).then(
     (response) => {
-      if (response.ok) {
-        return response.text()
-      }
+      return response.text()
     }
   ).then(
     (geolocationData) => {
@@ -90,5 +89,7 @@ function getApiData(url) {
       place.setAttribute('src', staticUrl);
       wrap.appendChild(place);
     }
-  )
+  ).catch( (err)=> {
+    alert(err)
+  })
 }
