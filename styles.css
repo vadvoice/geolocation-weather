@@ -1,0 +1,20 @@
+body {
+  background: #34495E;
+  color: #ddd; }
+
+#getPosition {
+  padding: .5em 1em;
+  cursor: pointer; }
+
+.output {
+  display: flex;
+  flex-flow: column; }
+  .output .info-wrap {
+    display: flex;
+    flex-flow: column; }
+    .output .info-wrap span {
+      padding: 1em; }
+  .output .userImg, .output .locationImg {
+    border-radius: 50%;
+    border: 5px solid #22313F;
+    max-width: 10em; }

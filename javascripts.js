@@ -90,6 +90,6 @@ function getApiData(url) {
       wrap.appendChild(place);
     }
   ).catch( (err)=> {
-    alert(err)
+    alert(err);
   })
 }
